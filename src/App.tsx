@@ -10,11 +10,7 @@ function App() {
     <div className="App">
       <Row>
         <Col md={12}>
-          <Ajax url="https://httpbin.org/get">
-            {({ response }) => {
-              return <J src={response} />;
-            }}
-          </Ajax>
+          <Ajax url="https://httpbin.org/get">{({ response }) => <J src={response} />}</Ajax>
         </Col>
       </Row>
     </div>

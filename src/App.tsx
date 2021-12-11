@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Col, Input, Row } from 'antd';
+import 'antd/dist/antd.css';
 import './App.css';
+import { createUseLocalStorage } from './shared/hooks/useLocalStorage';
+
+let useLocalStorage = createUseLocalStorage('app');
 
 function App() {
+  let [value, setValue] = useLocalStorage('value', 'myValue');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Row>
+        <Col md={4}>
+          <Input
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+          />
+        </Col>
+      </Row>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios, { Method } from 'axios';
 
 export interface UseAjaxProps<TRes = any, TParams = any> {
@@ -7,7 +7,6 @@ export interface UseAjaxProps<TRes = any, TParams = any> {
   params?: TParams;
   data?: TRes;
   headers?: any;
-  loading?: React.ReactElement | null;
 }
 
 export interface UseAjaxResult<T> {
@@ -16,15 +15,21 @@ export interface UseAjaxResult<T> {
   error: any;
 }
 
-export function useAjax<T = any>({ url, method = 'GET', params, data, headers }: UseAjaxProps<T>): [UseAjaxResult<T>] {
-  let [response, setResponse] = useState<{ data: T }>();
+export function useAjax<TRes = any, TParams = any>({
+  url,
+  method = 'GET',
+  params,
+  data,
+  headers,
+}: UseAjaxProps<TRes, TParams>): UseAjaxResult<TRes> {
+  let [response, setResponse] = useState<{ data: TRes }>();
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState<Error>();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .request<T>({
+      .request<TRes>({
         method,
         url,
         params,
@@ -41,12 +46,10 @@ export function useAjax<T = any>({ url, method = 'GET', params, data, headers }:
       });
   }, [data, headers, url, params, method]);
 
-  return [
-    {
-      response: response as any,
-      loading,
-      error,
-    },
-    // refetch
-  ];
+  return {
+    response: response as any,
+    loading,
+    error,
+  };
+  // refetch
 }

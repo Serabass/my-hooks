@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios, { Method } from 'axios';
 
-export interface UseAjaxProps<TRes> {
+export interface UseAjaxProps<TRes = any, TParams = any> {
   url: string;
   method?: Method;
-  params?: any;
-  data?: any;
+  params?: TParams;
+  data?: TRes;
   headers?: any;
   loading?: React.ReactElement | null;
 }
@@ -16,7 +16,7 @@ export interface UseAjaxResult<T> {
   error: any;
 }
 
-export function useAjax<T>({ url, method = 'GET', params, data, headers }: UseAjaxProps<T>): [UseAjaxResult<T>] {
+export function useAjax<T = any>({ url, method = 'GET', params, data, headers }: UseAjaxProps<T>): [UseAjaxResult<T>] {
   let [response, setResponse] = useState<{ data: T }>();
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState<Error>();

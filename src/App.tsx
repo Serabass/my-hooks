@@ -1,6 +1,6 @@
 import React from 'react';
 import J from 'react-json-view';
-import { Col, Row, Spin, Typography } from 'antd';
+import { Col, Row, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
 import { useAjax } from './shared/hooks/useAjax';
@@ -17,7 +17,9 @@ function App() {
   return (
     <div className="App">
       <Row>
-        <Col md={4}></Col>
+        <Col md={12}>
+          <J src={response} />
+        </Col>
       </Row>
     </div>
   );

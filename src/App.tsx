@@ -1,13 +1,18 @@
 import React from 'react';
-import { Col, InputNumber, Row } from 'antd';
+import J from 'react-json-view';
+import { Col, Row, Spin, Typography } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
 import { useAjax } from './shared/hooks/useAjax';
 
 function App() {
-  let a = useAjax({
+  let [{ response, loading }] = useAjax<any>({
     url: 'https://httpbin.org/get',
   });
+
+  if (loading) {
+    return <Spin />;
+  }
 
   return (
     <div className="App">

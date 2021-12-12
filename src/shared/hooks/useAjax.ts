@@ -5,7 +5,7 @@ export interface UseAjaxProps<TRes = any, TParams = any> {
   url: string;
   method?: Method;
   params?: TParams;
-  data?: TRes;
+  inputData?: TRes;
   headers?: any;
 }
 
@@ -19,7 +19,7 @@ export function useAjax<TRes = any, TParams = any>({
   url,
   method = 'GET',
   params,
-  data,
+  inputData,
   headers,
 }: UseAjaxProps<TRes, TParams>): UseAjaxResult<TRes> {
   let [response, setResponse] = useState<{ data: TRes }>();
@@ -34,7 +34,7 @@ export function useAjax<TRes = any, TParams = any>({
         url,
         params,
         headers,
-        data,
+        data: inputData,
       })
       .then((res: any) => {
         setResponse(res);
@@ -44,7 +44,7 @@ export function useAjax<TRes = any, TParams = any>({
         setError(res);
         setLoading(false);
       });
-  }, [data, headers, url, params, method]);
+  }, [inputData, headers, url, params, method]);
 
   return {
     response: response as any,

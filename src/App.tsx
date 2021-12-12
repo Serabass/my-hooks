@@ -6,22 +6,18 @@ import './App.css';
 import { Ajax } from './shared/components/Ajax';
 
 function App() {
+  let args = {
+    errorNode: (error: any) => <Alert message={error.message} />,
+    loadingNode: () => <Spin />,
+  };
   return (
-    <div className="App">
-      <Row>
-        <Col md={24}>
-          <Ajax
-            url="https://httpbin.org/get"
-            errorNode={(error) => <Alert message={error.message} />}
-            loadingNode={() => <Spin />}
-          >
-            {({ response }) => {
-              return <J src={response} />;
-            }}
-          </Ajax>
-        </Col>
-      </Row>
-    </div>
+    <Row className="App">
+      <Col md={24}>
+        <Ajax url="https://httpbin.org/get" {...args}>
+          {({ response }) => <J src={response} />}
+        </Ajax>
+      </Col>
+    </Row>
   );
 }
 

@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Row>
-        <Col md={12}>
+        <Col md={24}>
           <Ajax
             url="https://httpbin.org/get"
             errorNode={(error) => <Alert message={error.message} />}

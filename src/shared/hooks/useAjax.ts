@@ -36,7 +36,7 @@ export function useAjax<TRes = any, TParams = any>({
         headers,
         data: inputData,
       })
-      .then((res: any) => {
+      .then((res) => {
         setResponse(res);
         setLoading(false);
       })

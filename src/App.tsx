@@ -16,7 +16,7 @@ function App() {
             loadingNode={() => <Spin />}
           >
             {({ response }) => {
-              return <J src={response.data} />;
+              return <J src={response} />;
             }}
           </Ajax>
         </Col>

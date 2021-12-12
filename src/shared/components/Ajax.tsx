@@ -35,6 +35,7 @@ export function Ajax<T>({
 
   return children({
     loading,
+    error,
     url,
     method,
     params,

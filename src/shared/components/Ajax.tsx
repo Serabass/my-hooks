@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAjax, UseAjaxProps } from '../hooks/useAjax';
+import { useAjax, UseAjaxProps } from '../hooks';
 
 interface AjaxProps<T> extends UseAjaxProps<T> {
   children: (...any: any) => any;

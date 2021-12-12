@@ -3,7 +3,7 @@ import J from 'react-json-view';
 import { Alert, Col, Row, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
-import { Ajax } from './shared/components/Ajax';
+import { Ajax } from './shared';
 
 function App() {
   let args = {
